@@ -3,6 +3,9 @@
 function hhvm_newrelic_transaction_begin(): int;
 
 <<__Native>>
+function hhvm_newrelic_transaction_notice_error(string $exception_type, string $error_message, string $stack_trace, string $stack_frame_delimiter): int;
+
+<<__Native>>
 function hhvm_newrelic_transaction_set_name(string $name): int;
 
 <<__Native>>
