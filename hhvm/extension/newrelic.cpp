@@ -68,6 +68,10 @@ static int64_t HHVM_FUNCTION(hhvm_newrelic_transaction_begin) {
 	return transaction_id;
 }
 
+static int HHVM_FUNCTION(hhvm_newrelic_transaction_notice_error, const String & exception_type, const String & error_message, const String & stack_trace, const String & stack_frame_delimiter) {
+	return newrelic_transaction_notice_error(NEWRELIC_AUTOSCOPE, exception_type.c_str(), error_message.c_str(), stack_trace.c_str(), stack_frame_delimiter.c_str());
+}
+
 static int HHVM_FUNCTION(hhvm_newrelic_transaction_set_name, const String & name) {
 	return newrelic_transaction_set_name(NEWRELIC_AUTOSCOPE, name.c_str());
 }
@@ -157,6 +161,7 @@ public:
 		if (config_loaded) init_newrelic();
 
 		HHVM_FE(hhvm_newrelic_transaction_begin);
+		HHVM_FE(hhvm_newrelic_transaction_notice_error);
 		HHVM_FE(hhvm_newrelic_transaction_set_name);
 		HHVM_FE(hhvm_newrelic_transaction_set_request_url);
 		HHVM_FE(hhvm_newrelic_transaction_set_threshold);
