@@ -1,9 +1,9 @@
 <?hh
 <<__Native>>
-function hhvm_newrelic_instrumentation_enable(): void;
+function hhvm_newrelic_enable_instrumentation(): void;
 
 <<__Native>>
-function hhvm_newrelic_instrumentation_disable(): void;
+function hhvm_newrelic_disable_instrumentation(): void;
 
 <<__Native>>
 function hhvm_newrelic_transaction_begin(): int;

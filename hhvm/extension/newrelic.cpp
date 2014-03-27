@@ -177,8 +177,8 @@ public:
 		if (config_loaded) init_newrelic();
 
 
-		HHVM_FE(hhvm_newrelic_instrumentation_enable);
-		HHVM_FE(hhvm_newrelic_instrumentation_disable);
+		HHVM_FE(hhvm_newrelic_enable_instrumentation);
+		HHVM_FE(hhvm_newrelic_disable_instrumentation);
 		HHVM_FE(hhvm_newrelic_transaction_begin);
 		HHVM_FE(hhvm_newrelic_transaction_notice_error);
 		HHVM_FE(hhvm_newrelic_transaction_add_attribute);

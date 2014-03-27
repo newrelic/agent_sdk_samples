@@ -3,8 +3,8 @@ $loaded = extension_loaded("newrelic");
 
 print("newrelic loaded: ".$loaded."\n");
 
-print("hhvm_newrelic_instrumentation_enable exists: ".function_exists("hhvm_newrelic_instrumentation_enable")."\n");
-print("hhvm_newrelic_instrumentation_disable exists: ".function_exists("hhvm_newrelic_instrumentation_disable")."\n");
+print("hhvm_newrelic_enable_instrumentation exists: ".function_exists("hhvm_newrelic_enable_instrumentation")."\n");
+print("hhvm_newrelic_disable_instrumentation exists: ".function_exists("hhvm_newrelic_disable_instrumentation")."\n");
 print("hhvm_newrelic_transaction_begin exists: ".function_exists("hhvm_newrelic_transaction_begin")."\n");
 print("hhvm_newrelic_transaction_notice_error exists: ".function_exists("hhvm_newrelic_transaction_notice_error")."\n");
 print("hhvm_newrelic_transaction_add_attribute exists: ".function_exists("hhvm_newrelic_transaction_add_attribute")."\n");
@@ -17,11 +17,11 @@ print("hhvm_newrelic_segment_generic_begin exists: ".function_exists("hhvm_newre
 print("hhvm_newrelic_segment_datastore_begin exists: ".function_exists("hhvm_newrelic_segment_datastore_begin")."\n");
 print("hhvm_newrelic_segment_end exists: ".function_exists("hhvm_newrelic_segment_end")."\n");
 
-$instrumentation_enable_disable_code = hhvm_newrelic_instrumentation_disable();
-print("instrumentation_enable_disable_code: ".$instrumentation_enable_disable_code."\n");
+$disable_instrumentation_code = hhvm_newrelic_disable_instrumentation();
+print("disable_instrumentation_code: ".$disable_instrumentation_code."\n");
 
-$instrumentation_enable_error_code = hhvm_newrelic_instrumentation_enable();
-print("instrumentation_enable_error_code: ".$instrumentation_enable_error_code."\n");
+$enable_instrumentation_code = hhvm_newrelic_enable_instrumentation();
+print("enable_instrumentation_code: ".$enable_instrumentation_code."\n");
 
 $transaction_id = hhvm_newrelic_transaction_begin();
 print("transaction_id: ".$transaction_id."\n");
