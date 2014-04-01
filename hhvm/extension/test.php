@@ -49,6 +49,7 @@ print("set_max_trace_segments_error_code: ".$set_max_trace_segments_error_code."
 
 $generic_segment_id = hhvm_newrelic_segment_generic_begin("my_segment");
 print("generic_segment_id: ".$generic_segment_id."\n");
+
 sleep(2);
 
 $datastore_segment_id = hhvm_newrelic_segment_datastore_begin("my_table", "select");
@@ -65,5 +66,40 @@ print("generic_end_error_code: ".$generic_end_error_code."\n");
 $end_error_code = hhvm_newrelic_transaction_end();
 print("end_error_code: ".$end_error_code."\n");
 
-// $get_scoped_database_segment_error_code = hhvm_newrelic_get_scoped_database_segment("my_table", "select");
+{
+
+$get_scoped_transaction_error_code = hhvm_newrelic_get_scoped_transaction();
+print("get_scoped_transaction_error_code: ".$get_scoped_transaction_error_code."\n");
+
+$datastore_segment_id = hhvm_newrelic_segment_datastore_begin("my_table", "select");
+print("datastore_segment_id: ".$datastore_segment_id."\n");
+
+$get_scoped_database_segment_error_code = hhvm_newrelic_get_scoped_database_segment("table", "select");
+print("get_scoped_database_segment_error_code: ".$get_scoped_database_segment_error_code."\n");
+
+$get_scoped_generic_segment_error_code = hhvm_newrelic_get_scoped_generic_segment("generic_segment_name");
+print("get_scoped_generic_segment_error_code: ".$get_scoped_generic_segment_error_code."\n");
+
+// $transaction_id = hhvm_newrelic_transaction_begin();
+// print("transaction_id: ".$transaction_id."\n");
+
+}
+
+// {
+
+// $get_scoped_transaction_error_code = hhvm_newrelic_get_scoped_transaction();
+// print("get_scoped_transaction_error_code: ".$get_scoped_transaction_error_code."\n");
+
+// $datastore_segment_id = hhvm_newrelic_segment_datastore_begin("my_table", "select");
+// print("datastore_segment_id: ".$datastore_segment_id."\n");
+
+// $get_scoped_database_segment_error_code = hhvm_newrelic_get_scoped_database_segment("table", "select");
 // print("get_scoped_database_segment_error_code: ".$get_scoped_database_segment_error_code."\n");
+
+// $get_scoped_generic_segment_error_code = hhvm_newrelic_get_scoped_generic_segment("generic_segment_name");
+// print("get_scoped_generic_segment_error_code: ".$get_scoped_generic_segment_error_code."\n");
+
+// // $transaction_id = hhvm_newrelic_transaction_begin();
+// // print("transaction_id: ".$transaction_id."\n");
+
+// }
