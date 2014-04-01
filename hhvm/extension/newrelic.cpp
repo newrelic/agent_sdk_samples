@@ -63,6 +63,28 @@ private:
 
 void ScopedDatastoreSegment::sweep() { }
 
+class ScopedTransaction : public SweepableResourceData {
+public:
+	DECLARE_RESOURCE_ALLOCATION(ScopedTransaction)
+	CLASSNAME_IS("scoped_transaction")
+
+	virtual const String& o_getClassNameHook() const { return classnameof(); }
+
+	explicit ScopedTransaction() {
+		transaction_id = newrelic_transaction_begin();
+	}
+
+	virtual ~ScopedTransaction() {
+		if (transaction_id < 0) return;
+		newrelic_transaction_end(transaction_id);
+	}
+
+private:
+	long transaction_id;
+};
+
+void ScopedTransaction::sweep() { }
+
 static void HHVM_FUNCTION(hhvm_newrelic_enable_instrumentation) {
 	newrelic_enable_instrumentation(1);
 }
@@ -126,6 +148,12 @@ static Variant HHVM_FUNCTION(hhvm_newrelic_get_scoped_database_segment, const St
 	ScopedDatastoreSegment* segment = nullptr;
 	segment = NEWOBJ(ScopedDatastoreSegment)(table.c_str(), operation.c_str());
 	return Resource(segment);
+}
+
+static Variant HHVM_FUNCTION(hhvm_newrelic_get_scoped_transaction) {
+	ScopedTransaction* transaction = nullptr;
+	transaction = NEWOBJ(ScopedTransaction)();
+	return Resource(transaction);
 }
 
 static class NewRelicExtension : public Extension {
@@ -192,6 +220,7 @@ public:
 		HHVM_FE(hhvm_newrelic_segment_end);
 		HHVM_FE(hhvm_newrelic_get_scoped_generic_segment);
 		HHVM_FE(hhvm_newrelic_get_scoped_database_segment);
+		HHVM_FE(hhvm_newrelic_get_scoped_transaction);
 
 		loadSystemlib();
 	}

@@ -43,3 +43,6 @@ function hhvm_newrelic_get_scoped_generic_segment(string $name): mixed;
 
 <<__Native>>
 function hhvm_newrelic_get_scoped_database_segment(string $table, string $operation): mixed;
+
+<<__Native>>
+function hhvm_newrelic_get_scoped_transaction(): mixed;

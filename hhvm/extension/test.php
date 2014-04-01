@@ -16,6 +16,9 @@ print("hhvm_newrelic_transaction_end exists: ".function_exists("hhvm_newrelic_tr
 print("hhvm_newrelic_segment_generic_begin exists: ".function_exists("hhvm_newrelic_segment_generic_begin")."\n");
 print("hhvm_newrelic_segment_datastore_begin exists: ".function_exists("hhvm_newrelic_segment_datastore_begin")."\n");
 print("hhvm_newrelic_segment_end exists: ".function_exists("hhvm_newrelic_segment_end")."\n");
+print("hhvm_newrelic_get_scoped_generic_segment: ".function_exists("hhvm_newrelic_get_scoped_generic_segment")."\n");
+print("hhvm_newrelic_get_scoped_database_segment: ".function_exists("hhvm_newrelic_get_scoped_database_segment")."\n");
+print("hhvm_newrelic_get_scoped_transaction: ".function_exists("hhvm_newrelic_get_scoped_transaction")."\n");
 
 $disable_instrumentation_code = hhvm_newrelic_disable_instrumentation();
 print("disable_instrumentation_code: ".$disable_instrumentation_code."\n");
@@ -61,3 +64,6 @@ print("generic_end_error_code: ".$generic_end_error_code."\n");
 
 $end_error_code = hhvm_newrelic_transaction_end();
 print("end_error_code: ".$end_error_code."\n");
+
+// $get_scoped_database_segment_error_code = hhvm_newrelic_get_scoped_database_segment("my_table", "select");
+// print("get_scoped_database_segment_error_code: ".$get_scoped_database_segment_error_code."\n");
