@@ -1,4 +1,15 @@
 <?php
+
+function scoped_test() {
+	$transaction = hhvm_newrelic_get_scoped_transaction();
+	hhvm_newrelic_transaction_set_name("scoped_transaction");
+	hhvm_newrelic_transaction_set_request_url("/my/scoped/transaction");
+	$generic_segment = hhvm_newrelic_get_scoped_generic_segment("generic_segment_name");
+	sleep(2);
+	$database_segment = hhvm_newrelic_get_scoped_database_segment("table", "select");
+	sleep(3);
+}
+
 $loaded = extension_loaded("newrelic");
 
 print("newrelic loaded: ".$loaded."\n");
@@ -20,11 +31,8 @@ print("hhvm_newrelic_get_scoped_generic_segment: ".function_exists("hhvm_newreli
 print("hhvm_newrelic_get_scoped_database_segment: ".function_exists("hhvm_newrelic_get_scoped_database_segment")."\n");
 print("hhvm_newrelic_get_scoped_transaction: ".function_exists("hhvm_newrelic_get_scoped_transaction")."\n");
 
-$disable_instrumentation_code = hhvm_newrelic_disable_instrumentation();
-print("disable_instrumentation_code: ".$disable_instrumentation_code."\n");
-
-$enable_instrumentation_code = hhvm_newrelic_enable_instrumentation();
-print("enable_instrumentation_code: ".$enable_instrumentation_code."\n");
+hhvm_newrelic_disable_instrumentation();
+hhvm_newrelic_enable_instrumentation();
 
 $transaction_id = hhvm_newrelic_transaction_begin();
 print("transaction_id: ".$transaction_id."\n");
@@ -66,40 +74,4 @@ print("generic_end_error_code: ".$generic_end_error_code."\n");
 $end_error_code = hhvm_newrelic_transaction_end();
 print("end_error_code: ".$end_error_code."\n");
 
-{
-
-$get_scoped_transaction_error_code = hhvm_newrelic_get_scoped_transaction();
-print("get_scoped_transaction_error_code: ".$get_scoped_transaction_error_code."\n");
-
-$datastore_segment_id = hhvm_newrelic_segment_datastore_begin("my_table", "select");
-print("datastore_segment_id: ".$datastore_segment_id."\n");
-
-$get_scoped_database_segment_error_code = hhvm_newrelic_get_scoped_database_segment("table", "select");
-print("get_scoped_database_segment_error_code: ".$get_scoped_database_segment_error_code."\n");
-
-$get_scoped_generic_segment_error_code = hhvm_newrelic_get_scoped_generic_segment("generic_segment_name");
-print("get_scoped_generic_segment_error_code: ".$get_scoped_generic_segment_error_code."\n");
-
-// $transaction_id = hhvm_newrelic_transaction_begin();
-// print("transaction_id: ".$transaction_id."\n");
-
-}
-
-// {
-
-// $get_scoped_transaction_error_code = hhvm_newrelic_get_scoped_transaction();
-// print("get_scoped_transaction_error_code: ".$get_scoped_transaction_error_code."\n");
-
-// $datastore_segment_id = hhvm_newrelic_segment_datastore_begin("my_table", "select");
-// print("datastore_segment_id: ".$datastore_segment_id."\n");
-
-// $get_scoped_database_segment_error_code = hhvm_newrelic_get_scoped_database_segment("table", "select");
-// print("get_scoped_database_segment_error_code: ".$get_scoped_database_segment_error_code."\n");
-
-// $get_scoped_generic_segment_error_code = hhvm_newrelic_get_scoped_generic_segment("generic_segment_name");
-// print("get_scoped_generic_segment_error_code: ".$get_scoped_generic_segment_error_code."\n");
-
-// // $transaction_id = hhvm_newrelic_transaction_begin();
-// // print("transaction_id: ".$transaction_id."\n");
-
-// }
+scoped_test();
