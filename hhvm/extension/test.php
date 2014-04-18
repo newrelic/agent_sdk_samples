@@ -12,7 +12,7 @@ function scoped_test() {
 
 $loaded = extension_loaded("newrelic");
 
-print("newrelic loaded: ".$loaded."\n");
+print("newrelic extension loaded: ".$loaded."\n");
 
 print("hhvm_newrelic_enable_instrumentation exists: ".function_exists("hhvm_newrelic_enable_instrumentation")."\n");
 print("hhvm_newrelic_disable_instrumentation exists: ".function_exists("hhvm_newrelic_disable_instrumentation")."\n");
