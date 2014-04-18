@@ -10,7 +10,6 @@ print("hhvm_newrelic_transaction_notice_error exists: ".function_exists("hhvm_ne
 print("hhvm_newrelic_transaction_add_attribute exists: ".function_exists("hhvm_newrelic_transaction_add_attribute")."\n");
 print("hhvm_newrelic_transaction_set_name exists: ".function_exists("hhvm_newrelic_transaction_set_name")."\n");
 print("hhvm_newrelic_transaction_set_request_url exists: ".function_exists("hhvm_newrelic_transaction_set_request_url")."\n");
-print("hhvm_newrelic_transaction_set_threshold exists: ".function_exists("hhvm_newrelic_transaction_set_threshold")."\n");
 print("hhvm_newrelic_transaction_set_max_trace_segments exists: ".function_exists("hhvm_newrelic_transaction_set_max_trace_segments")."\n");
 print("hhvm_newrelic_transaction_end exists: ".function_exists("hhvm_newrelic_transaction_end")."\n");
 print("hhvm_newrelic_segment_generic_begin exists: ".function_exists("hhvm_newrelic_segment_generic_begin")."\n");
@@ -37,9 +36,6 @@ print("name_error_code: ".$name_error_code."\n");
 
 $request_url_error_code = hhvm_newrelic_transaction_set_request_url("my/path");
 print("request_url_error_code: ".$name_error_code."\n");
-
-$threshold_error_code = hhvm_newrelic_transaction_set_threshold(100);
-print("threshold_error_code: ".$threshold_error_code."\n");
 
 $set_max_trace_segments_error_code = hhvm_newrelic_transaction_set_max_trace_segments(100);
 print("set_max_trace_segments_error_code: ".$set_max_trace_segments_error_code."\n");

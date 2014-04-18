@@ -92,10 +92,6 @@ static int HHVM_FUNCTION(hhvm_newrelic_transaction_set_request_url, const String
 	return newrelic_transaction_set_request_url(NEWRELIC_AUTOSCOPE, request_url.c_str());
 }
 
-static int HHVM_FUNCTION(hhvm_newrelic_transaction_set_threshold, int threshold) {
-	return newrelic_transaction_set_threshold(NEWRELIC_AUTOSCOPE, threshold);
-}
-
 static int HHVM_FUNCTION(hhvm_newrelic_transaction_set_max_trace_segments, int max_trace_segments) {
 	return newrelic_transaction_set_max_trace_segments(NEWRELIC_AUTOSCOPE, max_trace_segments);
 }
@@ -184,7 +180,6 @@ public:
 		HHVM_FE(hhvm_newrelic_transaction_add_attribute);
 		HHVM_FE(hhvm_newrelic_transaction_set_name);
 		HHVM_FE(hhvm_newrelic_transaction_set_request_url);
-		HHVM_FE(hhvm_newrelic_transaction_set_threshold);
 		HHVM_FE(hhvm_newrelic_transaction_set_max_trace_segments);
 		HHVM_FE(hhvm_newrelic_transaction_end);
 		HHVM_FE(hhvm_newrelic_segment_generic_begin);
