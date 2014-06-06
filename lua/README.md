@@ -19,10 +19,10 @@ need a New Relic Pro subscription (or equivalent).
 2. [Install OpenResty](http://openresty.org/#Installation) - it's the easiest
    way to get started. It installs Nginx, ngx_lua, and LuaJIT, which are
    required for this example.
-3. Either set the NEWRELIC_LICENSE_KEY environment variable to your New Relic
+3. Set the NEWRELIC_LICENSE_KEY environment variable to your New Relic
    or pass it directly to newrelic.init inside conf/nginx.conf.
 4. Start Nginx and run the sample.
-
+   $ cd /path/to/agent_sdk_samples/lua
    $ sudo /usr/local/openresty/nginx/sbin/nginx -p "$(pwd)" -c conf/nginx.conf
    $ curl http://localhost:7747
 
