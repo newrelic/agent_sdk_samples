@@ -41,8 +41,3 @@ You can also change the log level to debug inside this file.
 
 Read the How-To guide that came with your Agent SDK download on how to
 configure the Agent SDK.
-
-## LICENSE
-
-Agent SDK samples code is free to use. Please see LICENSE in this distribution 
-for details on its license.
