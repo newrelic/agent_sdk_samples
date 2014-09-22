@@ -11,13 +11,18 @@ Make sure you have a [New Relic account](http://newrelic.com) before starting.
 
 1. [Install the Agent SDK](http://download.newrelic.com/agent_sdk/)
 
-2. Install [node-gyp](https://github.com/TooTallNate/node-gyp/)
+2. Install the Agent SDK wrapper package:
 
-3. Modify wrapper/binding.gyp if you put the Agent SDK libraries and header
-   files in directories other than /usr/local/lib and /usr/local/include, 
-   respectively.
+```
+   $ cd wrapper
+   $ npm install
+```
 
-4. Configure and build
+3. Update the libary and include paths inside wrapper/binding.gyp if you put the
+   Agent SDK libraries and header files in directories other than /usr/local/lib
+   and /usr/local/include, respectively.
+
+   If you modify this file, configure and build the wrapper again:
 
 ```
    $ cd wrapper
@@ -25,7 +30,7 @@ Make sure you have a [New Relic account](http://newrelic.com) before starting.
    $ node-gyp build
 ```
 
-5. Set environment variables required for the Agent SDK daemon to connect to 
+4. Set environment variables required for the Agent SDK daemon to connect to 
    New Relic, e.g.:
 
 ```
@@ -35,14 +40,14 @@ Make sure you have a [New Relic account](http://newrelic.com) before starting.
    $ export NEWRELIC_APP_LANGUAGE_VERSION="0.10.30"
 ```
 
-6. Start the newrelic-collector-client-daemon that comes with your Agent SDK
+5. Start the newrelic-collector-client-daemon that comes with your Agent SDK
    download:
 
 ```
    $ ./newrelic-collector-client-daemon
 ```
 
-7. Run the sample code inside nodejs/sample
+6. Run the sample code inside the sample directory:
 
 ```
    $ node hello_new_relic.js
