@@ -9,9 +9,9 @@ Make sure you have a [New Relic account](http://newrelic.com) before starting.
 
 ## Getting started
 
-1. [Install the Agent SDK](http://download.newrelic.com/agent_sdk/).
+1. [Install the Agent SDK](http://download.newrelic.com/agent_sdk/)
 
-2. Install [node-gyp](https://github.com/TooTallNate/node-gyp/).
+2. Install [node-gyp](https://github.com/TooTallNate/node-gyp/)
 
 3. Modify wrapper/binding.gyp if you put the Agent SDK libraries and header
    files in directories other than /usr/local/lib and /usr/local/include, 
@@ -19,9 +19,11 @@ Make sure you have a [New Relic account](http://newrelic.com) before starting.
 
 4. Configure and build
 
+```
    $ cd wrapper
    $ node-gyp configure
    $ node-gyp build
+```
 
 5. Set environment variables required for the Agent SDK daemon to connect to 
    New Relic, e.g.:
@@ -36,11 +38,15 @@ Make sure you have a [New Relic account](http://newrelic.com) before starting.
 6. Start the newrelic-collector-client-daemon that comes with your Agent SDK
    download:
 
+```
    $ ./newrelic-collector-client-daemon
+```
 
 7. Run the sample code inside nodejs/sample
 
+```
    $ node hello_new_relic.js
+````
 
 The sample code only sends one transaction and one custom metric up to New 
 Relic. You should see data show up [the New Relic UI](https://rpm.newrelic.com/) 
@@ -55,5 +61,5 @@ You can also change the log level to debug inside this file.
 
 ## Configuring the Agent SDK
 
-Read the How-To guide that came with your Agent SDK download on how to
-configure the Agent SDK.
+Read the How-To guide (AgentSDK.pdf) that came with your Agent SDK download on 
+how to configure the Agent SDK.
