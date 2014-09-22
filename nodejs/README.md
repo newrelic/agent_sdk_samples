@@ -1,29 +1,44 @@
 # Node.js Sample
 
 This sample demonstrates how to get started using the Agent SDK with Node.js.
+If you're looking for an out-of-the-box New Relic solution for your Node.js 
+code, you should not use the Agent SDK. Instead, you should use the [Node.js 
+agent](http://newrelic.com/nodejs) that will automatically instrument your code.
 
-Make sure you have a [New Relic account](http://newrelic.com) before
-starting. To see all the features, such as slow transaction traces, you will
-need a New Relic Pro subscription (or equivalent).
+Make sure you have a [New Relic account](http://newrelic.com) before starting.
 
 ## Getting started
 
-1. [Install the Agent SDK](http://download.newrelic.com/agent_sdk/)
+1. [Install the Agent SDK](http://download.newrelic.com/agent_sdk/).
 
-2. Set environment variables required for the daemon to connect to New Relic, 
-   e.g.:
+2. Install [node-gyp](https://github.com/TooTallNate/node-gyp/).
 
+3. Modify wrapper/binding.gyp if you put the Agent SDK libraries and header
+   files in directories other than /usr/local/lib and /usr/local/include, 
+   respectively.
+
+4. Configure and build
+
+   $ cd wrapper
+   $ node-gyp configure
+   $ node-gyp build
+
+5. Set environment variables required for the Agent SDK daemon to connect to 
+   New Relic, e.g.:
+
+```
    $ export NEWRELIC_LICENSE_KEY=<your license key>
    $ export NEWRELIC_APP_NAME="My Demo App"
    $ export NEWRELIC_APP_LANGUAGE="Node.js"
    $ export NEWRELIC_APP_LANGUAGE_VERSION="0.10.30"
+```
 
-3. Start the newrelic-collector-client-daemon that comes in your Agent SDK
+6. Start the newrelic-collector-client-daemon that comes with your Agent SDK
    download:
 
    $ ./newrelic-collector-client-daemon
 
-4. Run the sample code inside nodejs/sample
+7. Run the sample code inside nodejs/sample
 
    $ node hello_new_relic.js
 
