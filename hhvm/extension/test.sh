@@ -6,4 +6,4 @@ if [ ! -z "${REALPATH}" ]; then
 	DIRNAME=`realpath ${DIRNAME}`
 fi
 
-${HPHP_HOME}/hphp/hhvm/hhvm -vDynamicExtensions.0=${DIRNAME}/newrelic.so ${DIRNAME}/test.php
+hhvm -vDynamicExtensions.0=${DIRNAME}/newrelic.so ${DIRNAME}/test.php
