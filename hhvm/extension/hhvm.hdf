@@ -1,7 +1,8 @@
 Server {
-  Port = 8888
+  Port = 80
   SourceRoot = /var/www/
 }
+
 EnvVariables {
   NEWRELIC_LICENSE_KEY = INSERT YOUR KEY HERE
   NEWRELIC_APP_NAME = HHVM Example
@@ -60,7 +61,8 @@ StaticFile {
   }
 }
 
+DynamicExtensionPath = /etc/hhvm/ext
 DynamicExtensions {
-  newrelic = /path/to/newrelic.so
+  newrelic = newrelic.so
 }
 
