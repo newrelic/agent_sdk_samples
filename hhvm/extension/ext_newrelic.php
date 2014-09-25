@@ -30,7 +30,7 @@ function hhvm_newrelic_transaction_end(): int;
 function hhvm_newrelic_segment_generic_begin(string $name): int;
 
 <<__Native>>
-function hhvm_newrelic_segment_datastore_begin(string $table, string $operation): int;
+function hhvm_newrelic_segment_datastore_begin(string $table, string $operation, string $sql): int;
 
 <<__Native>>
 function hhvm_newrelic_segment_end(int $id): int;
@@ -39,7 +39,7 @@ function hhvm_newrelic_segment_end(int $id): int;
 function hhvm_newrelic_get_scoped_generic_segment(string $name): mixed;
 
 <<__Native>>
-function hhvm_newrelic_get_scoped_database_segment(string $table, string $operation): mixed;
+function hhvm_newrelic_get_scoped_database_segment(string $table, string $operation, string $sql): mixed;
 
 <<__Native>>
 function hhvm_newrelic_get_scoped_transaction(): mixed;

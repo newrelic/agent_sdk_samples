@@ -9,8 +9,8 @@ HHVM_EXTENSION(newrelic newrelic.cpp)
 HHVM_SYSTEMLIB(newrelic ext_newrelic.php)
 
 target_link_libraries(newrelic
-	${NEWRELIC_TRANSACTION_LIBRARY}
 	${NEWRELIC_COMMON_LIBRARY}
+	${NEWRELIC_TRANSACTION_LIBRARY}
 	${NEWRELIC_COLLECTOR_CLIENT_LIBRARY}
 
 )

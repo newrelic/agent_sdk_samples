@@ -46,8 +46,8 @@ public:
 
 	virtual const String& o_getClassNameHook() const { return classnameof(); }
 
-	explicit ScopedDatastoreSegment(string table, string operation) : table(table), operation(operation) {
-		segment_id = newrelic_segment_datastore_begin(NEWRELIC_AUTOSCOPE, NEWRELIC_AUTOSCOPE, table.c_str(), operation.c_str());
+	explicit ScopedDatastoreSegment(string table, string operation, string sql) : table(table), operation(operation), sql(sql) {
+		segment_id = newrelic_segment_datastore_begin(NEWRELIC_AUTOSCOPE, NEWRELIC_AUTOSCOPE, table.c_str(), operation.c_str(), sql.c_str(), NULL, NULL);
 	}
 
 	virtual ~ScopedDatastoreSegment() {
@@ -59,6 +59,7 @@ private:
 	long segment_id;
 	string table;
 	string operation;
+	string sql;
 };
 
 void ScopedDatastoreSegment::sweep() { }
@@ -126,8 +127,8 @@ static int64_t HHVM_FUNCTION(hhvm_newrelic_segment_generic_begin, const String& 
 	return newrelic_segment_generic_begin(NEWRELIC_AUTOSCOPE, NEWRELIC_AUTOSCOPE, name.c_str());
 }
 
-static int64_t HHVM_FUNCTION(hhvm_newrelic_segment_datastore_begin, const String& table, const String& operation) {
-	return newrelic_segment_datastore_begin(NEWRELIC_AUTOSCOPE, NEWRELIC_AUTOSCOPE, table.c_str(), operation.c_str());
+static int64_t HHVM_FUNCTION(hhvm_newrelic_segment_datastore_begin, const String& table, const String& operation, const String& sql) {
+	return newrelic_segment_datastore_begin(NEWRELIC_AUTOSCOPE, NEWRELIC_AUTOSCOPE, table.c_str(), operation.c_str(), sql.c_str(), NULL, NULL);
 }
 
 static int64_t HHVM_FUNCTION(hhvm_newrelic_segment_end, int64_t id) {
@@ -140,9 +141,9 @@ static Variant HHVM_FUNCTION(hhvm_newrelic_get_scoped_generic_segment, const Str
 	return Resource(segment);
 }
 
-static Variant HHVM_FUNCTION(hhvm_newrelic_get_scoped_database_segment, const String& table, const String& operation) {
+static Variant HHVM_FUNCTION(hhvm_newrelic_get_scoped_database_segment, const String& table, const String& operation, const String& sql) {
 	ScopedDatastoreSegment* segment = nullptr;
-	segment = NEWOBJ(ScopedDatastoreSegment)(table.c_str(), operation.c_str());
+	segment = NEWOBJ(ScopedDatastoreSegment)(table.c_str(), operation.c_str(), sql.c_str());
 	return Resource(segment);
 }
 
