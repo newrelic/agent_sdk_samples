@@ -29,8 +29,7 @@ function hhvm_newrelic_transaction_end(): int;
 <<__Native>>
 function hhvm_newrelic_segment_generic_begin(string $name): int;
 
-<<__Native>>
-function hhvm_newrelic_segment_datastore_begin(string $table, string $operation): int;
+
 
 <<__Native>>
 function hhvm_newrelic_segment_end(int $id): int;
