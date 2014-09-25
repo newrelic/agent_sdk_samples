@@ -6,7 +6,7 @@ function scoped_test() {
 	hhvm_newrelic_transaction_set_request_url("/my/scoped/transaction");
 	$generic_segment = hhvm_newrelic_get_scoped_generic_segment("generic_segment_name");
 	sleep(2);
-	$database_segment = hhvm_newrelic_get_scoped_database_segment("table", "select");
+	$database_segment = hhvm_newrelic_get_scoped_database_segment("table", "select", "select * from table");
 	sleep(3);
 }
 
@@ -56,7 +56,7 @@ print("generic_segment_id: ".$generic_segment_id."\n");
 
 sleep(2);
 
-$datastore_segment_id = hhvm_newrelic_segment_datastore_begin("my_table", "select");
+$datastore_segment_id = hhvm_newrelic_segment_datastore_begin("my_table", "select", "select * from table");
 print("datastore_segment_id: ".$datastore_segment_id."\n");
 
 sleep(1);
