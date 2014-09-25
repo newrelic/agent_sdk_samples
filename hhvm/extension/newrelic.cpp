@@ -172,7 +172,7 @@ public:
 		// new relic libraries if the names start with NEWRELIC
 		for (Hdf child = env_vars.firstChild(); child.exists(); child = child.next()) {
 			std::string name = child.getName();
-			std::string val = env_vars[name].getString();
+			std::string val = env_vars[name].getName();
 			std::string newrelic_namespace("NEWRELIC");
 
 			if (name.compare(0, newrelic_namespace.length(), newrelic_namespace) == 0) {
