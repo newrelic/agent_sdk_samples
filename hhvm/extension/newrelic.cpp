@@ -173,7 +173,7 @@ public:
 		// new relic libraries if the names start with NEWRELIC
 		for (Hdf child = env_vars.firstChild(); child.exists(); child = child.next()) {
 			std::string name = child.getName();
-			std::string val = env_vars[name].getName();
+			std::string val = env_vars[name].toString();
 			std::string newrelic_namespace("NEWRELIC");
 
 			if (name.compare(0, newrelic_namespace.length(), newrelic_namespace) == 0) {
@@ -200,7 +200,6 @@ public:
 
 	virtual void moduleInit () {
 		if (config_loaded) init_newrelic();
-
 
 		HHVM_FE(hhvm_newrelic_enable_instrumentation);
 		HHVM_FE(hhvm_newrelic_disable_instrumentation);
