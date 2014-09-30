@@ -1,5 +1,5 @@
 // =================================================================
-// Inside plugin.php
+// Inside wp-includes/plugin.php
 // ==================================================================
 
 // Paste this code at the start of the do_action function right after the
@@ -62,7 +62,7 @@ else {
 }
 
 // ==================================================================
-// Inside wp-db.php
+// Inside wp-includes/wp-db.php
 // ==================================================================
 
 // Paste this code inside the query function right before @mysql_query is called
@@ -71,7 +71,7 @@ $segment;
 // It will only work for very simple queries.
 if (preg_match( '/^\s*(select)\s/i', $query)) {
    if (preg_match("/\s+FROM\s+`?([a-z\d_]+)`?/i", $query, $match)) {
-       $segment = hhvm_newrelic_get_scoped_database_segment($match[1], "select");
+       $segment = hhvm_newrelic_get_scoped_database_segment($match[1], "select", $query);
    }
 }
 
