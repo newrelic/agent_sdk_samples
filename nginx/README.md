@@ -16,17 +16,23 @@ need a New Relic Pro subscription (or equivalent).
    required for this example.
 3. Add the New Relic module to Nginx. To add the New Relic module and link to 
    the Agent SDK libraries, you'll need to configure your Nginx build like so:
-   $ cd .../path/to/nginx
-   $ ./configure \
-     --with-luajit
-     --with-ld-opt="-L /usr/local/lib -lnewrelic-transaction -lnewrelic-common -lnewrelic-collector-client" \
-     --with-cc-opt="-I /usr/local/include" \
-     --add-module=path/to/ngx_http_newrelic_module
+
+   ```
+      $ cd .../path/to/nginx
+      $ ./configure \
+        --with-luajit
+        --with-ld-opt="-L /usr/local/lib -lnewrelic-transaction -lnewrelic-common -lnewrelic-collector-client" \
+        --with-cc-opt="-I /usr/local/include" \
+        --add-module=path/to/ngx_http_newrelic_module
+   ```
 4. Pass your New Relic license key to the newrelic_license_key directive
    inside your nginx.config file.
 5. Start Nginx and run the sample.
+
+   ```
    $ sudo /usr/local/openresty/nginx/sbin/nginx -p "$(pwd)" -c conf/nginx.conf
    $ curl http://localhost:7747
+   ```
 
 You should see the performance data from your requests appear within 
 [the New Relic UI](https://rpm.newrelic.com/) after a few minutes. The agent 
